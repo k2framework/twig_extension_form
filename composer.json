@@ -11,5 +11,10 @@
         "twig/twig": "1.*",
         "symfony/property-access": "v2.2.1"
     },
+    "autoload": {
+        "psr-0": {
+            "K2\\": "K2/"
+        }
+    },
     "target-dir": "K2"
 }
