@@ -181,8 +181,8 @@ Los atributos que acepta son:
 
 .. code-block:: html+jinja
 
-    {{ form_radio('persona.adulto', 1) }}    
-    <!-- <input type="radio" name="persona[adulto]" id="persona_adulto" value="1" /> -->
+    {{ form_radio('persona.adulto', 1, check = true) }}    
+    <!-- <input type="radio" name="persona[adulto]" id="persona_adulto" value="1" checked="checked" /> -->
     
     {{ form_radio('acepta_terminos', 'Si') }}    
     <!-- <input type="radio" name="direccion" id="direccion" value="Si" /> -->
@@ -195,4 +195,35 @@ form_checkbox()
 ---------
 
 Cumple exactamente la misma función que form_radio, solo que genere inputs de tipo checkbox
+
+form_select()
+---------
+
+Permite crear campos de tipo radio
+
+Los atributos que acepta son:
+
+    * field: nombre del input (genera name y id, convierte los puntos para el name en notación de array y para el id los separa con _).
+    * options: arreglo con pares clave valor, donde la clave será el value de las opcionesy el valor el Texto a mostrar en las mismas.
+    * attrs: un arreglo twig con los atributos para el input (class, style, required, disabled, ...)
+    * value: valor inicial para el elemento, por defecto null.
+    * empty: texto a mostrar inicialmente, por defecto es - seleccione -
+
+.. code-block:: html+jinja
+
+    {% set sexos = { 1 : 'Hombre' , 2 : 'Mujer' } %}
+
+    {{ form_select('persona.sexo', sexos) }}    
+    <!-- <select name="persona[sexo]" id="persona_sexo">
+            <option>- Seleccione -</option>
+            <option value="1" >Hombre</option>
+            <option value="2" >Mujer</option>
+         </select> -->
+
+    {{ form_select('sexo', sexos, value=2) }}    
+    <!-- <select name="sexo" id="sexo">
+            <option>- Seleccione -</option>
+            <option value="1" >Hombre</option>
+            <option value="2" selected="selected" >Mujer</option>
+         </select> -->
     
