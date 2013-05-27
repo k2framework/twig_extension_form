@@ -1,0 +1,14 @@
+{
+    "name": "k2/twig-extension-form",
+    "description": "Extensión twig que permite crear campos de formulario",
+    "authors": [
+        {
+            "name": "Manuel Aguirre",
+            "email": "programador.manuel@gmail.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "1.*",
+        "symfony/property-access": "v2.2.1"
+    }
+}
