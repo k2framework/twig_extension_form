@@ -322,7 +322,7 @@ En la vista:
     {% set estados_select = form_options(estados, 'estado', 'id') %}
     {# igual al anterior, pero especificando la columna a usar para las keys #}
 
-    {{ form_select('persona.estado', select_estados) }} {# le pasamos el nuevo array #}  
+    {{ form_select('persona.estado', estados_select) }} {# le pasamos el nuevo array #}  
 
     {{ form_select('persona.estado', form_options(estados, 'estado')) }}{# llamamos directamente a la función #}  
     
