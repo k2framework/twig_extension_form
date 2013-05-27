@@ -226,4 +226,29 @@ Los atributos que acepta son:
             <option value="1" >Hombre</option>
             <option value="2" selected="selected" >Mujer</option>
          </select> -->
+         
+Ahora lo haremos con un array que viene de un php
+
+.. code-block:: php
+
+    <?php
+
+    $estatus = array(
+        1 => "Activo",
+        2 => "Inactivo",
+        3 => "Removido",
+    );
+    
+    echo $twig->render("form.twig", array('estatus' => $status));
+
+.. code-block:: html+jinja
+
+    {{ form_select('persona.status', status) }}  
+    
+    <!-- <select name="persona[status]" id="persona_status">
+            <option>- Seleccione -</option>
+            <option value="1" >Activo</option>
+            <option value="2" >Inactivo</option>
+            <option value="3" >Removido</option>
+         </select> -->
     
