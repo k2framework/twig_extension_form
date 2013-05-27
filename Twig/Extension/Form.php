@@ -329,16 +329,6 @@ class Form extends \Twig_Extension
     {
         $html = $empty ? "<option value=\"\">{$this->escape($empty)}</option>" : '';
 
-        $values = array_map(function($e) {
-                    if ($e instanceof \K2\ActiveRecord\ActiveRecord) {
-                        return $e->id;
-                    } elseif (is_object($e)) {
-                        return (string) $e;
-                    } else {
-                        return $e;
-                    }
-                }, (array) $value);
-
         foreach ($options as $index => $value) {
             if (in_array($index, $values)) {
                 $html .= "<option selected value=\"{$index}\">";
