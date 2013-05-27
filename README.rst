@@ -79,7 +79,7 @@ Veamos con un ejemplo como crear un formulario con tres campos, nombres, apellid
     {{ form_input('persona.apellidos', 'text') }}
     
     {{ form_label('persona.edad', 'Edad') }}
-    {{ form_input('persona.edad', 'number', {min:1, max: 110}) }}
+    {{ form_input('persona.edad', 'number', {min:1, max: 110}, 18) }} {# por defecto muestra 18 en la edad #}
 
 Como se puede apreciar es muy sencillo crear y agregar campos con la lib form, aparte esta puede renderizar todo el formulario sin nosotros tener que hacer nada especial (Con mensajes de error si el formulario es validado).
 
@@ -118,8 +118,8 @@ Los atributos que acepta son:
     {{ form_input('clave', 'password') }}    
     <!-- <input type="password" name="clave" id="clave" /> -->
         
-    {{ form_input('id', 'hidden') }}    
-    <!-- <input type="hidden" name="id" id="id" /> -->
+    {{ form_input('id', 'hidden', value="23") }}    
+    <!-- <input type="hidden" name="id" id="id" value="23" /> -->
         
     {{ form_input('persona.id', 'hidden') }}
     <!-- <input type="hidden" name="persona[id]" id="persona_id" /> -->
@@ -146,3 +146,53 @@ Los atributos que acepta son:
     
     {{ form_label('u.edad', 'Edad del Infante', {class:'form-label'}) }}    
     <!-- <label for="u_edad" class="form-label">Edad del Infante</label> -->
+    
+
+form_textarea()
+---------
+
+Permite crear campos textarea
+
+Los atributos que acepta son:
+
+    * field: nombre del input (genera name y id, convierte los puntos para el name en notación de array y para el id los separa con _).
+    * attrs: un arreglo twig con los atributos para el input (class, style, required, disabled, ...)
+    * value: valor inicial para el elemento, por defecto null.
+
+.. code-block:: html+jinja
+
+    {{ form_textarea('persona.nombres') }}    
+    <!-- <textarea name="persona[nombres]" id="persona_nombres"></textarea> -->
+    
+    {{ form_input('direccion', value = objeto.campo) }}    
+    <!-- <textarea name="direccion" id="direccion" >valor del campo</textarea> -->
+    
+form_radio()
+---------
+
+Permite crear campos de tipo radio
+
+Los atributos que acepta son:
+
+    * field: nombre del input (genera name y id, convierte los puntos para el name en notación de array y para el id los separa con _).
+    * value: valor para el radio
+    * attrs: un arreglo twig con los atributos para el input (class, style, required, disabled, ...)
+    * check: indica si el campo aparecerá seleccionado o no.
+
+.. code-block:: html+jinja
+
+    {{ form_radio('persona.adulto', 1) }}    
+    <!-- <input type="radio" name="persona[adulto]" id="persona_adulto" value="1" /> -->
+    
+    {{ form_radio('acepta_terminos', 'Si') }}    
+    <!-- <input type="radio" name="direccion" id="direccion" value="Si" /> -->
+    
+    {{ form_radio('acepta_terminos', 'No') }}    
+    <!-- <input type="radio" name="direccion" id="direccion" value="No" /> -->
+    
+    
+form_checkbox()
+---------
+
+Cumple exactamente la misma función que form_radio, solo que genere inputs de tipo checkbox
+    
