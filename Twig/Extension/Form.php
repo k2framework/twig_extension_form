@@ -329,6 +329,8 @@ class Form extends \Twig_Extension
     {
         $html = $empty ? "<option value=\"\">{$this->escape($empty)}</option>" : '';
 
+        $values = (array) $value;
+
         foreach ($options as $index => $value) {
             if (in_array($index, $values)) {
                 $html .= "<option selected value=\"{$index}\">";
