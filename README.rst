@@ -241,6 +241,62 @@ Ahora lo haremos con un array que viene de un php
     
     echo $twig->render("form.twig", array('estatus' => $status));
 
+En la vista:
+
+.. code-block:: html+jinja
+
+    {{ form_select('persona.status', status) }}  
+    
+    <!-- <select name="persona[status]" id="persona_status">
+            <option>- Seleccione -</option>
+            <option value="1" >Activo</option>
+            <option value="2" >Inactivo</option>
+            <option value="3" >Removido</option>
+         </select> -->
+    
+form_options()
+---------
+
+Permite crear un array con pares clave valor a partir de un array multidimensional ó un array de objetos. Es muy util cuando queremos pasar el resultado de una consulta a un select por ejemplo.
+
+Los atributos que acepta son:
+
+    * **options:** arreglo de arreglos u objetos que se van a leer.
+    * **column:** nombre de la columna o atributo del objeto que se usara como el valor del arreglo que se devolverá.
+    * **key:** nombre de la columna o atributo del objeto que se usara como clave del arreglo que se devolverá.
+         
+Tenemos una matriz y un array de objetos en un php
+
+.. code-block:: php
+
+    <?php
+
+    $estados = array(
+        array('id' => 1, 'estado' => 'Aragua'),
+        array('id' => 2, 'estado' => 'Carabobo'),
+        array('id' => 3, 'estado' => 'Mérida'),
+    );
+
+    // nuestra clase rol tiene un método publico llamado getNombre() 
+    // ó un atributo publico $nombre que devuelve el nombre del rol
+    
+    // en el constructor de pasamos el nombre de dicho rol
+
+    $roles = array(
+        1 => new Rol('admin'),
+        2 => new Rol('moderador'),
+        3 => new Rol('super admin'),
+    );
+    
+    // en la practica los roles pudieran venir de una BD por ejemplo, lo mismo para los estados.
+    
+    echo $twig->render("form.twig", array(
+        'estados' => $estados,
+        'roles' => $roles,
+    ));
+
+En la vista:
+
 .. code-block:: html+jinja
 
     {{ form_select('persona.status', status) }}  
