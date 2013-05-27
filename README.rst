@@ -90,38 +90,29 @@ Permite crear campos de tipo text, hidden, password, number, email, url, color, 
 
 .. code-block:: html+jinja
 
-    {{ form_input('persona.nombres') }} 
+    {{ form_input('persona.nombres') }}    
+    <!-- <input type="text" name="persona[nombres]" id="persona_nombres" /> -->
     
-        <input type="text" name="persona[nombres]" id="persona_nombres" />
+    {{ form_input('direccion') }}    
+    <!-- <input type="text" name="direccion" id="direccion" /> -->
     
-    {{ form_input('direccion') }}
+    {{ form_input('edad', 'number') }}    
+    <!-- <input type="number" name="edad" id="edad" /> -->
     
-        <input type="text" name="direccion" id="direccion" />
+    {{ form_input('user.color', type='color') }}    
+    <!-- <input type="color" name="user[color]" id="user_color" /> -->
     
-    {{ form_input('edad', 'number') }}
+    {{ form_input('user.website', attrs={maxlength:120}, type='url') }}    
+    <!-- <input type="url" name="user[website]" id="user_website" /> -->
     
-        <input type="number" name="edad" id="edad" />
-    
-    {{ form_input('user.color', type='color') }}
-    
-        <input type="color" name="user[color]" id="user_color" />
-    
-    {{ form_input('user.website', attrs={maxlength:120}, type='url') }}
-    
-        <input type="url" name="user[website]" id="user_website" />
-    
-    {{ form_input('user.correo', 'email') }}
-    
-        <input type="email" name="user[correo]" id="user_correo" />
+    {{ form_input('user.correo', 'email') }}    
+    <!-- <input type="email" name="user[correo]" id="user_correo" /> -->
         
-    {{ form_input('clave', 'password') }}
-    
-        <input type="password" name="clave" id="clave" />
+    {{ form_input('clave', 'password') }}    
+    <!-- <input type="password" name="clave" id="clave" /> -->
         
-    {{ form_input('id', 'hidden') }}
-    
-        <input type="hidden" name="id" id="id" />
+    {{ form_input('id', 'hidden') }}    
+    <!-- <input type="hidden" name="id" id="id" /> -->
         
     {{ form_input('persona.id', 'hidden') }}
-
-        <input type="hidden" name="persona[id]" id="persona_id" />
+    <!-- <input type="hidden" name="persona[id]" id="persona_id" /> -->
