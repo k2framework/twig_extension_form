@@ -90,10 +90,10 @@ Permite crear campos de tipo text, hidden, password, number, email, url, color, 
 
 Los atributos que acepta son:
 
-    * field: nombre del input (genera name y id, convierte los puntos para el name en notación de array y para el id los separa con _).
-    * type: tipo del input por defecto es type=text.
-    * attrs: un arreglo twig con los atributos para el input (class, style, required, disabled, ...)
-    * value: valor inicial para el elemento, por defecto null.
+    * **field**: nombre del input (genera name y id, convierte los puntos para el name en notación de array y para el id los separa con _).
+    * **type**: tipo del input por defecto es type=text.
+    * **attrs**: un arreglo twig con los atributos para el input (class, style, required, disabled, ...)
+    * **value**: valor inicial para el elemento, por defecto null.
 
 .. code-block:: html+jinja
 
@@ -132,9 +132,9 @@ Permite crear etiquetas label para los campos
 
 Los atributos que acepta son:
 
-    * field: nombre del input (genera atributo for, convierte los puntos en _).
-    * text: texto a mostrar en el label.
-    * attrs: un arreglo twig con los atributos para el input (class, style, ...)
+    * **field**: nombre del input (genera atributo for, convierte los puntos en _).
+    * **text:** texto a mostrar en el label.
+    * **attrs**: un arreglo twig con los atributos para el input (class, style, ...)
 
 .. code-block:: html+jinja
 
@@ -155,9 +155,9 @@ Permite crear campos textarea
 
 Los atributos que acepta son:
 
-    * field: nombre del input (genera name y id, convierte los puntos para el name en notación de array y para el id los separa con _).
-    * attrs: un arreglo twig con los atributos para el input (class, style, required, disabled, ...)
-    * value: valor inicial para el elemento, por defecto null.
+    * **field**: nombre del input (genera name y id, convierte los puntos para el name en notación de array y para el id los separa con _).
+    * **attrs**: un arreglo twig con los atributos para el input (class, style, required, disabled, ...)
+    * **value**: valor inicial para el elemento, por defecto null.
 
 .. code-block:: html+jinja
 
@@ -174,10 +174,10 @@ Permite crear campos de tipo radio
 
 Los atributos que acepta son:
 
-    * field: nombre del input (genera name y id, convierte los puntos para el name en notación de array y para el id los separa con _).
-    * value: valor para el radio
-    * attrs: un arreglo twig con los atributos para el input (class, style, required, disabled, ...)
-    * check: indica si el campo aparecerá seleccionado o no.
+    * **field**: nombre del input (genera name y id, convierte los puntos para el name en notación de array y para el id los separa con _).
+    * **value**: valor para el radio
+    * **attrs**: un arreglo twig con los atributos para el input (class, style, required, disabled, ...)
+    * **check**: indica si el campo aparecerá seleccionado o no.
 
 .. code-block:: html+jinja
 
@@ -203,11 +203,11 @@ Permite crear campos de tipo radio
 
 Los atributos que acepta son:
 
-    * field: nombre del input (genera name y id, convierte los puntos para el name en notación de array y para el id los separa con _).
-    * options: arreglo con pares clave valor, donde la clave será el value de las opcionesy el valor el Texto a mostrar en las mismas.
-    * attrs: un arreglo twig con los atributos para el input (class, style, required, disabled, ...)
-    * value: valor inicial para el elemento, por defecto null.
-    * empty: texto a mostrar inicialmente, por defecto es - seleccione -
+    * **field:** nombre del input (genera name y id, convierte los puntos para el name en notación de array y para el id los separa con _).
+    * **options:** arreglo con pares clave valor, donde la clave será el value de las opcionesy el valor el Texto a mostrar en las mismas.
+    * **attrs:** un arreglo twig con los atributos para el input (class, style, required, disabled, ...)
+    * **value:** valor inicial para el elemento, por defecto null.
+    * **empty:** texto a mostrar inicialmente, por defecto es - seleccione -
 
 .. code-block:: html+jinja
 
