@@ -88,6 +88,13 @@ form_input()
 
 Permite crear campos de tipo text, hidden, password, number, email, url, color, etc...
 
+Los atributos que acepta son:
+
+    * field: nombre del input (genera name y id, convierte los puntos para el name en notación de array y para el id los separa con _).
+    * type: tipo del input por defecto es type=text.
+    * attrs: un arreglo twig con los atributos para el input (class, style, required, disabled, ...)
+    * value: valor inicial para el elemento, por defecto null.
+
 .. code-block:: html+jinja
 
     {{ form_input('persona.nombres') }}    
@@ -116,3 +123,26 @@ Permite crear campos de tipo text, hidden, password, number, email, url, color, 
         
     {{ form_input('persona.id', 'hidden') }}
     <!-- <input type="hidden" name="persona[id]" id="persona_id" /> -->
+
+
+form_label()
+---------
+
+Permite crear etiquetas label para los campos
+
+Los atributos que acepta son:
+
+    * field: nombre del input (genera atributo for, convierte los puntos en _).
+    * text: texto a mostrar en el label.
+    * attrs: un arreglo twig con los atributos para el input (class, style, ...)
+
+.. code-block:: html+jinja
+
+    {{ form_label('persona.nombres', 'Nombres') }}    
+    <!-- <label for="persona_nombres">Nombres</label> -->
+    
+    {{ form_label('nombres', 'Nombres') }}    
+    <!-- <label for="nombres">Nombres</label> -->
+    
+    {{ form_label('u.edad', 'Edad del Infante', {class:'form-label'}) }}    
+    <!-- <label for="u_edad" class="form-label">Edad del Infante</label> -->
