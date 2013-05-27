@@ -263,7 +263,7 @@ Los atributos que acepta son:
 
     * **options:** arreglo de arreglos u objetos que se van a leer.
     * **column:** nombre de la columna o atributo del objeto que se usara como el valor del arreglo que se devolverá.
-    * **key:** nombre de la columna o atributo del objeto que se usara como clave del arreglo que se devolverá.
+    * **key:** nombre de la columna o atributo del objeto que se usara como clave del arreglo que se devolverá (por defecto busca id).
          
 Tenemos una matriz y un array de objetos en un php
 
@@ -279,6 +279,21 @@ Tenemos una matriz y un array de objetos en un php
 
     // nuestra clase rol tiene un método publico llamado getNombre() 
     // ó un atributo publico $nombre que devuelve el nombre del rol
+    
+    /**
+     * class Rol
+     * {
+     *    protected $nombre;
+     *
+     *    protected $id;
+     * 
+     *    public functon __construct($nombre = null){ $this->nombre = $nombre; }
+     *     
+     *    public functon getNombre(){ return $this->nombre; }
+     *     
+     *    public functon getId(){ return $this->id; }
+     *
+     */
     
     // en el constructor de pasamos el nombre de dicho rol
 
@@ -299,12 +314,22 @@ En la vista:
 
 .. code-block:: html+jinja
 
-    {{ form_select('persona.status', status) }}  
+    {% set estados_select = form_options(estados, 'estado') %} 
+    {# crea un array donde las claves son los valores de la columna id de cada array de la matriz 
+       y el valor es el contenido de la columna estado de cada elemento #}
+    <!-- estados_select es igual a: {1:"Aragua", 2:"Carabobo", 3:"Mérida"}  -->
     
-    <!-- <select name="persona[status]" id="persona_status">
-            <option>- Seleccione -</option>
-            <option value="1" >Activo</option>
-            <option value="2" >Inactivo</option>
-            <option value="3" >Removido</option>
-         </select> -->
+    {% set estados_select = form_options(estados, 'estado', 'id') %}
+    {# igual al anterior, pero especificando la columna a usar para las keys #}
+
+    {{ form_select('persona.estado', select_estados) }} {# le pasamos el nuevo array #}  
+
+    {{ form_select('persona.estado', form_options(estados, 'estado')) }}{# llamamos directamente a la función #}  
     
+    
+    {{ form_select('persona.rol', form_options(roles, 'nombre')) }}{# llamamos directamente a la función #}  
+    
+    {{ form_select('user.roles', form_options(roles, 'nombre')),{multiple:true}}}
+    
+    
+
