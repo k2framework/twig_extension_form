@@ -12,7 +12,7 @@ la instalación es mediante composer, agregar el paquete al composer.json del pr
 
     {
         "require" : {
-            "k2/twig_-extension-form": "dev-master"
+            "k2/twig-extension-form": "dev-master"
         }
     }
                       
