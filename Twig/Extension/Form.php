@@ -53,8 +53,8 @@ class Form extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFilter('choices', function($choices, $separator = ' ') {
-                        return join($separator, $choices);
-                    }, array('is_safe' => array('html'))),
+                return join($separator, $choices);
+            }, array('is_safe' => array('html'))),
         );
     }
 
@@ -128,7 +128,7 @@ class Form extends \Twig_Extension
         $attrs['type'] = 'checkbox';
         $attrs['name'] = resolveName($field);
         isset($attrs['id']) || $attrs['id'] = strtr($field, '.', '_');
-        if (null !== $this->getValue($context, $field)) {
+        if (null !== $value && $value == $this->getValue($context, $field)) {
             $attrs['checked'] = 'checked';
         }
 
@@ -152,7 +152,7 @@ class Form extends \Twig_Extension
         $attrs['type'] = 'radio';
         $attrs['name'] = resolveName($field);
         isset($attrs['id']) || $attrs['id'] = strtr($field, '.', '_');
-        if (null !== $this->getValue($context, $field)) {
+        if (null !== $value && $value == $this->getValue($context, $field)) {
             $attrs['checked'] = 'checked';
         }
 
