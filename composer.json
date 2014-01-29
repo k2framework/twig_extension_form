@@ -8,8 +8,8 @@
         }
     ],
     "require": {
-        "twig/twig": "1.*",
-        "symfony/property-access": "v2.2.1"
+        "twig/twig": "*",
+        "symfony/property-access": "*"
     },
     "autoload": {
         "psr-0": {
