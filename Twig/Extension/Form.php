@@ -128,7 +128,7 @@ class Form extends \Twig_Extension
         $attrs['type'] = 'checkbox';
         $attrs['name'] = resolveName($field);
         isset($attrs['id']) || $attrs['id'] = strtr($field, '.', '_');
-        if (null !== $value && $value == $this->getValue($context, $field)) {
+        if ($this->isChecked($field, $value, $context)) {
             $attrs['checked'] = 'checked';
         }
 
@@ -152,7 +152,7 @@ class Form extends \Twig_Extension
         $attrs['type'] = 'radio';
         $attrs['name'] = resolveName($field);
         isset($attrs['id']) || $attrs['id'] = strtr($field, '.', '_');
-        if (null !== $value && $value == $this->getValue($context, $field)) {
+        if ($this->isChecked($field, $value, $context)) {
             $attrs['checked'] = 'checked';
         }
 
@@ -341,6 +341,23 @@ class Form extends \Twig_Extension
         }
 
         return $html;
+    }
+
+    /**
+     * Devuelve true si el campo debe estar chequeado.
+     * @param string $field
+     * @param mixed $value
+     * @param mixed $context
+     * @return boolean
+     */
+    protected function isChecked($field, $value, $context)
+    {
+        $itemValue = $this->getValue($context, $field);
+        
+        $value = is_scalar($value) ? (string) $value : $value; 
+        $itemValue = is_scalar($itemValue) ? (string) $itemValue : $itemValue; 
+        
+        return null !== $value && $value === $itemValue;
     }
 
 }
