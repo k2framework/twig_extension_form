@@ -59,7 +59,7 @@ Para la creación de formularios disponemos de varias funciones Twig:
     * **form_textarea(name, attrs = array(), value = null)**
     * **form_check(name, value, attrs = array(), check = false)**
     * **form_radio(name, value, attrs = array(), check = false)**
-    * **form_select(name, array options, attrs = array(), value = null)**
+    * **form_select(name, array options, attrs = array(), value = null, empty = 'Seleccione')**
     * **form_choice(name, array options, multiple = true, attrs = array(), value = null)**
     * **form_options(array options, column, key = 'id')**
 
@@ -206,7 +206,7 @@ Los atributos que acepta son:
     * **options:** arreglo con pares clave valor, donde la clave será el value de las opcionesy el valor el Texto a mostrar en las mismas.
     * **attrs:** un arreglo twig con los atributos para el input (class, style, required, disabled, ...)
     * **value:** valor inicial para el elemento, por defecto null.
-    * **empty:** texto a mostrar inicialmente, por defecto es - seleccione -
+    * **empty:** texto a mostrar inicialmente, por defecto es - seleccione - (si no se quiere usar, pasar null o false)
 
 .. code-block:: html+jinja
 
@@ -330,5 +330,17 @@ En la vista:
     
     {{ form_select('user.roles', form_options(roles, 'nombre')),{multiple:true}}}
     
+Nuevo: No escapar un valor
+====
+Ahora es posible indicarle a un campo, que no escape su valor (Util para cuando manejamos html en un textarea).
+
+Para ello, solo debemos pasar un indice a los atributos del campo llamado raw_value, y su valor debe ser true, ejemplo:
+
+.. code-block:: html+jinja
+   
+    {{ form_textarea('user.html', { raw_value: true }) }}
+
+Asi de sencillo es decirle al campo que no escape su valor.
+
     
 

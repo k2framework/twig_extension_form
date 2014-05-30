@@ -108,7 +108,7 @@ class Form extends \Twig_Extension
 
         $val = $this->getValue($context, $field);
 
-        return "<textarea {$this->attrsToString($attrs)}>{$this->escape(null !== $val ? $val : $value)}</textarea>";
+        return "<textarea {$this->attrsToString($attrs)}>{$this->escape(null !== $val ? $val : $value, $attrs)}</textarea>";
     }
 
     /**
@@ -287,13 +287,17 @@ class Form extends \Twig_Extension
     protected function attrsToString(array $attrs, $value = null)
     {
         if (null !== $value) {
-            $html = ' value="' . $this->escape($value) . '"';
+            $html = ' value="' . $this->escape($value, $attrs) . '"';
         } else {
             $html = '';
         }
 
         if (isset($attrs['value'])) {
             unset($attrs['value']);
+        }
+        
+        if (isset($attrs['raw_value'])) {
+            unset($attrs['raw_value']);
         }
 
         foreach ($attrs as $name => $value) {
@@ -313,9 +317,13 @@ class Form extends \Twig_Extension
      * @param type $string
      * @return type
      */
-    protected function escape($string)
+    protected function escape($string, array $attrs = array())
     {
-        return twig_escape_filter($this->twig, (string) $string);
+        if (isset($attrs['raw_value'])) {
+            return (string) $string;
+        } else {
+            return twig_escape_filter($this->twig, (string) $string);
+        }
     }
 
     /**
@@ -353,10 +361,10 @@ class Form extends \Twig_Extension
     protected function isChecked($field, $value, $context)
     {
         $itemValue = $this->getValue($context, $field);
-        
-        $value = is_scalar($value) ? (string) $value : $value; 
-        $itemValue = is_scalar($itemValue) ? (string) $itemValue : $itemValue; 
-        
+
+        $value = is_scalar($value) ? (string) $value : $value;
+        $itemValue = is_scalar($itemValue) ? (string) $itemValue : $itemValue;
+
         return null !== $value && $value === $itemValue;
     }
 
